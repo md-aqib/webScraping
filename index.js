@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const $ = require('cheerio')
 
 
-let url = "https://www.imdb.com/title/tt0111161/?ref_=nv_sr_srsg_0"
+let url = "https://www.flipkart.com/realme-x2-pearl-green-64-gb/p/itm75023903eb431"
 
 async function configureBrowser(){
 
@@ -18,9 +18,14 @@ async function checkAvailabilty(page){
     let html = await page.evaluate(() => document.body.innerHTML);
     // console.log(html)
 
-    $("._1vC4OE _3qQ9m1", html).each(function(){
+    $("._2kuvG8", html).each(function(){
         let availability = $(this).text();
-        console.log(availability)
+        // console.log(availability)
+        if(availability){
+            console.log("In stock")
+        } else {
+            console.log("Out of stock")
+        }
     })
 
 }
